@@ -4,7 +4,7 @@ namespace Alura\Arquitetura\Testes;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Alura\Arquitetura\Aluno\Aluno;
+use Alura\Arquitetura\Dominio\Aluno\Aluno;
 
 class AlunoTest extends TestCase
 {

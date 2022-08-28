@@ -4,7 +4,7 @@ namespace Alura\Arquitetura\Testes;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Alura\Arquitetura\Aluno\Telefone;
+use Alura\Arquitetura\Dominio\Aluno\Telefone;
 
 class TelefoneTest extends TestCase
 {

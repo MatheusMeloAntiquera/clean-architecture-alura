@@ -2,9 +2,9 @@
 
 namespace Alura\Arquitetura\Testes;
 
-use Alura\Arquitetura\Email;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Alura\Arquitetura\Dominio\Email;
 
 class EmailTest extends TestCase
 {

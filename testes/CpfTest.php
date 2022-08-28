@@ -2,9 +2,9 @@
 
 namespace Alura\Arquitetura\Testes;
 
-use Alura\Arquitetura\Cpf;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Alura\Arquitetura\Dominio\Cpf;
 
 class CpfTest extends TestCase
 {
