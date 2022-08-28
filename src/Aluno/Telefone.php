@@ -1,6 +1,6 @@
 <?php
 
-namespace Alura\Arquitetura;
+namespace Alura\Arquitetura\Aluno;
 
 use InvalidArgumentException;
 
@@ -46,7 +46,8 @@ class Telefone
         $this->numero = $numero;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return "({$this->ddd})" . " " . $this->numero;
     }
 }

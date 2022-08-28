@@ -1,8 +1,8 @@
 <?php
 
-namespace Alura\Arquitetura;
+namespace Alura\Arquitetura\Indicacao;
 
-use Alura\Arquitetura\Aluno;
+use Alura\Arquitetura\Aluno\Aluno;
 
 class Indicacao
 {

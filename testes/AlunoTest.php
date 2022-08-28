@@ -2,9 +2,9 @@
 
 namespace Alura\Arquitetura\Testes;
 
-use Alura\Arquitetura\Aluno;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Alura\Arquitetura\Aluno\Aluno;
 
 class AlunoTest extends TestCase
 {

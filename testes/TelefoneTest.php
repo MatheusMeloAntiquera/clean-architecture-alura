@@ -3,8 +3,8 @@
 namespace Alura\Arquitetura\Testes;
 
 use InvalidArgumentException;
-use Alura\Arquitetura\Telefone;
 use PHPUnit\Framework\TestCase;
+use Alura\Arquitetura\Aluno\Telefone;
 
 class TelefoneTest extends TestCase
 {
