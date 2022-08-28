@@ -17,7 +17,7 @@ class Aluno
      */
     private array $telefones = [];
 
-    public function __construct(
+    private function __construct(
         Cpf $cpf,
         string $nome,
         Email $email
@@ -27,9 +27,30 @@ class Aluno
         $this->email = $email;
     }
 
-    public function adicionarTelefone(Telefone $telefone)
+    /**
+     * named constructor
+     *
+     * @param string $cpf
+     * @param string $nome
+     * @param string $email
+     * @return Aluno
+     */
+    public static function criaNovoAluno(
+        string $cpf,
+        string $nome,
+        string $email
+    ) {
+        return new Aluno(
+            new Cpf($cpf),
+            $nome,
+            new Email($email)
+        );
+    }
+
+    public function adicionarTelefone(string $ddd, string $telefone)
     {
-        $this->telefones[] = $telefone;
+        $this->telefones[] = new Telefone($ddd, $telefone);
+        return $this;
     }
 
     public function retornaTelefones(): array
