@@ -32,6 +32,6 @@ class TelefoneTest extends TestCase
             '021',
             '12345-6789'
         );
-        $this->assertSame('021 12345-6789', (string) $telefone);
+        $this->assertSame('(021) 12345-6789', (string) $telefone);
     }
 }
