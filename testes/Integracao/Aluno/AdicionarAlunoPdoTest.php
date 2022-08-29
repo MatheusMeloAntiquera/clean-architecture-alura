@@ -3,35 +3,28 @@
 namespace Alura\Arquitetura\Testes\Integracao\Aluno;
 
 use PDO;
-use PHPUnit\Framework\TestCase;
-use Alura\Arquitetura\Dominio\Aluno\Aluno;
+use Alura\Arquitetura\Dominio\Aluno\RepositorioDeAluno;
 use Alura\Arquitetura\Infra\Aluno\RepositorioDeAlunoComPdo;
+use Alura\Arquitetura\Testes\Integracao\Aluno\Bases\AdicionarAlunoBase;
 
-class AdicionarAlunoPdoTest extends TestCase
+class AdicionarAlunoPdoTest extends AdicionarAlunoBase
 {
-    public function setUp(): void
+    protected PDO $conexao;
+
+    public function __construct()
     {
-        $conexao = new PDO('sqlite:test.db');
-        $conexao->prepare("DELETE FROM telefones")->execute();
-        $conexao->prepare("DELETE FROM alunos")->execute();
+        $this->conexao = new PDO('sqlite:test.db');
+        parent::__construct();
     }
 
-    public function testDevePersistirUmAlunoUtilizandoPdo()
+    public function setaRepositorioDeAluno(): RepositorioDeAluno
     {
-        $repositorioDeAlunoComPdo = new RepositorioDeAlunoComPdo(
-            new PDO('sqlite:test.db')
-        );
+        return new RepositorioDeAlunoComPdo($this->conexao);
+    }
 
-        $aluno = Aluno::criaNovoAluno(
-            '123.456.789-10',
-            'João',
-            'joao@example.com'
-        );
-
-        $aluno->adicionarTelefone('023', '99999-9999')
-            ->adicionarTelefone('023', '8888-8888');
-
-        $repositorioDeAlunoComPdo->adicionarAluno($aluno);
-        $this->assertTrue(true);
+    public function setUp(): void
+    {
+        $this->conexao->prepare("DELETE FROM telefones")->execute();
+        $this->conexao->prepare("DELETE FROM alunos")->execute();
     }
 }

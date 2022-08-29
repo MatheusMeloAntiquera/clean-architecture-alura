@@ -3,13 +3,13 @@
 namespace Alura\Arquitetura\Infra\Aluno;
 
 use PDO;
-use Alura\Arquitetura\Dominio\Cpf;
+
 use Alura\Arquitetura\Dominio\Aluno\Aluno;
 use Alura\Arquitetura\Dominio\Aluno\RepositorioDeAluno;
+use Alura\Arquitetura\Dominio\Aluno\AlunoNaoEncontradoException;
 
 class RepositorioDeAlunoComPdo implements RepositorioDeAluno
 {
-
     private $conexao;
     public function __construct(PDO $conexao)
     {
@@ -44,7 +44,7 @@ class RepositorioDeAlunoComPdo implements RepositorioDeAluno
         $resultado = $stmt->fetchObject();
 
         if (empty($resultado)) {
-            throw new RepositorioDeAlunoComPdoException("Aluno não encontrado");
+            throw new AlunoNaoEncontradoException("Aluno não encontrado");
         }
 
         $sql = "DELETE FROM alunos WHERE (cpf = :cpf);";
@@ -79,8 +79,32 @@ class RepositorioDeAlunoComPdo implements RepositorioDeAluno
 
         return $aluno;
     }
-}
 
-class RepositorioDeAlunoComPdoException extends \Exception
-{
+    public function buscarTodos(): array
+    {
+        $alunos = [];
+
+        $stmt = $this->conexao->prepare("SELECT * FROM alunos;");
+        $stmt->execute();
+        $resultado = $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        if (!empty($resultado)) {
+            foreach ($resultado as $alunoEncontrado) {
+                $aluno = Aluno::criaNovoAluno($alunoEncontrado->cpf, $alunoEncontrado->nome, $alunoEncontrado->email);
+
+                $sql = "SELECT * FROM telefones WHERE (cpf_aluno = :cpf);";
+                $stmt = $this->conexao->prepare($sql);
+                $stmt->bindValue('cpf', $alunoEncontrado->cpf);
+                $stmt->execute();
+                $telefones = $stmt->fetchAll(PDO::FETCH_CLASS);
+
+                foreach ($telefones as $telefone) {
+                    $aluno->adicionarTelefone($telefone->ddd, $telefone->numero);
+                }
+
+                $alunos[] = $aluno;
+            }
+        }
+        return $alunos;
+    }
 }

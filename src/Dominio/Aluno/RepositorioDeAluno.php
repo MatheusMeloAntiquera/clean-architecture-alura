@@ -10,4 +10,5 @@ interface RepositorioDeAluno
     public function adicionarAluno(Aluno $aluno): void;
     public function removerAluno(Aluno $aluno): void;
     public function buscarPorCpf(string $aluno): null|Aluno;
+    public function buscarTodos(): null|array;
 }
