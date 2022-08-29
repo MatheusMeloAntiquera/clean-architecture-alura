@@ -35,7 +35,7 @@ class AlunoTest extends TestCase
             '3333-4321'
         );
 
-        $telefones = $aluno->retornaTelefones();
+        $telefones = $aluno->telefones();
         $this->assertIsArray($telefones);
         $this->assertSame('(012) 98765-4321', (string) $telefones[0]);
         $this->assertSame('(012) 3333-4321', (string) $telefones[1]);

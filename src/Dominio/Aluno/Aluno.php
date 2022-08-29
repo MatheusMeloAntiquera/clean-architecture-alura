@@ -54,8 +54,27 @@ class Aluno
         return $this;
     }
 
-    public function retornaTelefones(): array
+    /**
+     *
+     * @return Telefone[]
+     */
+    public function telefones(): array
     {
         return $this->telefones;
+    }
+
+    public function cpf(): string
+    {
+        return $this->cpf;
+    }
+
+    public function nome(): string
+    {
+        return $this->nome;
+    }
+
+    public function email()
+    {
+        return $this->email;
     }
 }

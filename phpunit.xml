@@ -1,7 +1,10 @@
 <phpunit>
     <testsuites>
-        <testsuite name="testes">
-            <directory>testes</directory>
+        <testsuite name="Unidade">
+            <directory>testes/Unidade</directory>
+        </testsuite>
+        <testsuite name="Integracao">
+            <directory>testes/Integracao</directory>
         </testsuite>
     </testsuites>
 </phpunit>

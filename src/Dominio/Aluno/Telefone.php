@@ -50,4 +50,14 @@ class Telefone
     {
         return "({$this->ddd})" . " " . $this->numero;
     }
+
+    public function ddd(): string
+    {
+        return $this->ddd;
+    }
+
+    public function numero(): string
+    {
+        return $this->numero;
+    }
 }
